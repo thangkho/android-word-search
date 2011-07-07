@@ -15,6 +15,7 @@ import android.app.AlertDialog;
 
 public class WordSearchActivity extends Activity implements OnClickListener {
 	private static final String TAG = "WordSearch";
+	private static int difficulty;
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
@@ -22,10 +23,10 @@ public class WordSearchActivity extends Activity implements OnClickListener {
         setContentView(R.layout.main);
         
         //Set up onClick Listeners for all of the btns
+        View continBtn = findViewById(R.id.btnContinue);
+        continBtn.setOnClickListener(this);
         View newGameBtn = findViewById(R.id.btnNewGame);
-        newGameBtn.setOnClickListener(this);
-        View aboutBtn = findViewById(R.id.btnAbout);
-        aboutBtn.setOnClickListener(this);
+        newGameBtn.setOnClickListener(this);       
         View exitBtn = findViewById(R.id.btnExit);
         exitBtn.setOnClickListener(this);
     }
@@ -74,7 +75,12 @@ public class WordSearchActivity extends Activity implements OnClickListener {
     	case R.id.settings:
     		startActivity(new Intent(this, Prefs.class));
     		return true;
+    	case R.id.about:
+    		startActivity(new Intent(this, About.class));
+    		break;
+    	
     	}
+    
     	/*
     	 * put more here if we add any other menu options
     	 */
@@ -90,11 +96,9 @@ public class WordSearchActivity extends Activity implements OnClickListener {
 			//Ask for the difficulty and start a new game of that diff.
 			openDiffSelection();
 			break;
-		case R.id.btnAbout:
-			//display the about info, set out a new intent and start the about activity.
-			Intent i = new Intent(this, About.class);
-			startActivity(i);
-			break;
+		case R.id.btnContinue:
+			startGame(Game.CONTINUING_GAME, Game.CONTINUING_GAME);
+			break;	
 		case R.id.btnExit:
 			//exit/finish
 			finish();
@@ -111,21 +115,45 @@ public class WordSearchActivity extends Activity implements OnClickListener {
 		.setItems(R.array.difficultyArray,
 				new DialogInterface.OnClickListener() {			
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						startGame(which);				
+					public void onClick(DialogInterface dialog, int diff) {
+						//startGame(diff);
+						difficulty = diff;
+						openCatSelection();
 					}
 				}
 		).show();
 	}
+	//Opens an alert dialog for user to select category.
+	//Called by openDiffSelection(). Once user selects cat
+	//it calls startGame(difficulty, category)
+	private void openCatSelection()	{
+		new AlertDialog.Builder(this).setTitle(R.string.strCategory)
+		.setItems(R.array.categoryArray,
+				new DialogInterface.OnClickListener() {			
+					@Override
+					public void onClick(DialogInterface dialog, int cat) {
+						startGame(difficulty, cat);
+						
+					}
+				}
+		).show();
+	}
+
+
 	
-	private void startGame(int i){
+	private void startGame(int diff, int cat){
 		//Need to create a new intent to fire off a new game
 		//can use intent.putExtra(passing it the str name of the diff, and the value)
 		//to put in the difficulty (have to code this into 
-		//the game activity)
-		Log.d(TAG, "clicked on " + i);
+		//the game activity)new AlertDialog.Builder(this).setTitle(R.string.strDifficulty)
+	
+		Log.e(TAG, "clicked on " + diff);
+		Log.e(TAG, "clicked on" + cat);
+		
 		Intent newI = new Intent(this, Game.class);
-		newI.putExtra(Game.KEY_DIFF, i);
+		newI.putExtra(Game.KEY_DIFF, diff);
+		newI.putExtra(Game.KEY_CAT, cat);
+		startActivity(newI);
 	}
 	
 }

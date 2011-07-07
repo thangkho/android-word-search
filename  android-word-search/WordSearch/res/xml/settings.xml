@@ -9,5 +9,6 @@
     android:title="@string/sounds_title" 
     android:summary="@string/sounds_summary" 
     android:defaultValue="true"></CheckBoxPreference>
+    <CheckBoxPreference android:title="@string/hints_title" android:key="hints" android:summary="@string/hints_summary"></CheckBoxPreference>
     
 </PreferenceScreen>

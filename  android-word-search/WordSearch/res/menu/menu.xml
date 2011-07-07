@@ -4,5 +4,10 @@
     <item android:alphabeticShortcut="@string/settings_shortcut"
      android:id="@+id/settings" 
      android:title="@string/settings_title"></item>
+    <item android:id="@+id/about" 
+    android:title="@string/about_title" 
+    android:alphabeticShortcut="a"></item>
+    <item android:id="@+id/hints"
+    android:title="@string/hints_title" ></item>
     
 </menu>
