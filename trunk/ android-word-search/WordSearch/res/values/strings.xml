@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, WordSearchActivity!</string>
+    <string name="app_name">WordSearch</string>
+    <string name="new_game">New Game</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
+    <string name="strDifficulty">Difficulty</string>
+    <string-array name="difficultyArray">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+    <string name="about_text">Random Info Here. ADD INFO LATER!</string>
+    <string name="settings_shortcut">s</string>
+    <string name="settings_title">Word Search Settings</string>
+    <string name="music_title">Music</string>
+    <string name="music_summary">Play Background Music</string>
+    <string name="sounds_title">Sounds</string>
+    <string name="sounds_summary">Play Sound When Word Is Found</string>
+    <string name="about_title">About Android Word Search</string>
+    <string name="game_title">Game</string>
+</resources>
