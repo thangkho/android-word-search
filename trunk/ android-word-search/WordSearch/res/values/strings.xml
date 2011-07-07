@@ -20,4 +20,15 @@
     <string name="sounds_summary">Play Sound When Word Is Found</string>
     <string name="about_title">About Android Word Search</string>
     <string name="game_title">Game</string>
+    <string name="hints_title">Hints</string>
+    <string name="hints_summary">Highlight All Instances Of Selected Letter</string>
+    <string name="contin">Continue</string>
+    <string name="strCategory">Category Selection</string>
+    <string-array name="categoryArray">
+        <item>Random</item>
+        <item>People</item>
+        <item>Animals</item>
+        <item>Vehicles</item>
+    </string-array>
+        <string name="thirdMenuItem">third item</string>
 </resources>
