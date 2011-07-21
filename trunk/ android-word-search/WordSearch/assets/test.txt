@@ -1,0 +1,17 @@
+Test
+random
+words
+get
+placed
+in
+these
+text
+files
+adding
+more
+words
+to
+check
+arraylist
+sizes
+END
