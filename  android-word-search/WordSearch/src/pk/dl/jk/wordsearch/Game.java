@@ -1,5 +1,8 @@
 package pk.dl.jk.wordsearch;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,8 +45,30 @@ public class Game extends Activity {
 		int diff = getIntent().getIntExtra(KEY_DIFF, DIFF_EASY);
 		int cat = getIntent().getIntExtra(KEY_CAT, CAT_RANDOM);
 		
+		/*
+		 *  Read a file, convert it to a string. Choose file based off of client's
+		 *   category selection. PK
+		 */
+			// work on logic to select proper word file
+			InputStream is = this.getAssets().open("german.txt");
+			int size = is.available();
+	
+	        // Read the entire asset into a local byte buffer.
+	        byte[] buffer = new byte[size];
+	        is.read(buffer);
+	        is.close();
+	        String wordListText = new String(buffer);
+	        
+	        // Create parser, to parse and return word list.
+	        ArrayList<String> wordList = new ArrayList<String>();
+			TextParser t = new TextParser();
+			
+			//this is the ArrayList filled with our random words (in alphabetical order)
+			wordList = t.getWords(cat,10,wordListText);
+		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
 		Log.e(TAG, "********IN GAME CAT IS " + cat);
+		
 		
 		//String[] listWords = selectWords(cat);
 
