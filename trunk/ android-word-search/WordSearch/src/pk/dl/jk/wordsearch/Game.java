@@ -65,6 +65,7 @@ public class Game extends Activity {
 			
 			//this is the ArrayList filled with our random words (in alphabetical order)
 			wordList = t.getWords(cat,10,wordListText);
+			
 		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
 		Log.e(TAG, "********IN GAME CAT IS " + cat);
