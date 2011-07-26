@@ -34,16 +34,14 @@ public class TextParser extends Activity {
 		 *  Scanner will parse full String of our text file into an ArrayList, by word.
 		 */
 		Scanner scan = new Scanner(wordListText);
-		Integer listWords = 0;
 		
 		String chosenWord = "";
 		while (scan.hasNextLine() && !chosenWord.matches("END"))
 		{
 			chosenWord = "";
 			chosenWord = scan.nextLine();
-			if(chosenWord.length() <= 10)
+			if(chosenWord.length() <= 7)
 				wordList.add(chosenWord);
-			listWords++;
 		}
 		
 		//full list of words
@@ -53,12 +51,16 @@ public class TextParser extends Activity {
 		ArrayList<String> finalWordList = new ArrayList<String>();
 		Random rand = new Random();
 		int temp = rand.nextInt(wordList.size()/10);
+		//int temp2 = 0;
 		
 		// Grabbing ten words, in order, pseudo-randomly.
 		for(int i = 0; i < numWords; i++)
 		{
-			finalWordList.add(wordList.get(temp));
+			finalWordList.add(wordList.get(temp).toLowerCase());
+			//temp2 = temp;
 			temp += rand.nextInt(wordList.size()/10);
+			//if (temp2 == temp)
+				//temp++;				
 		}
 		
 		finalWordList.trimToSize();

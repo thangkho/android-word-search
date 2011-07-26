@@ -50,7 +50,7 @@ public class Game extends Activity {
 		 *   category selection. PK
 		 */
 			// work on logic to select proper word file
-			InputStream is = this.getAssets().open("german.txt");
+			InputStream is = this.getAssets().open("basicEnglish.txt");
 			int size = is.available();
 	
 	        // Read the entire asset into a local byte buffer.
