@@ -7,9 +7,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
+import android.widget.Toast;
 
 
 /*
@@ -20,7 +25,9 @@ public class Game extends Activity {
 	private static final String TAG = "game";
 	public static final String KEY_DIFF = "pk.dl.jk.wordsearch.difficulty";
 	public static final String KEY_CAT = "pk.dl.jk.wordsearch.difficulty";
-
+	//ACCESSED BY OTHER CLASSES DO NOT DELETE
+	public static final int ROWS = 10;
+	public static final int COLS = 10;
 	//public static final String KEY_CATEGORY = "pk.dl.jk.wordsearch.category";
 	private static final int DIFF_EASY = 0;
 	private static final int DIFF_MEDIUM = 1;
@@ -32,6 +39,11 @@ public class Game extends Activity {
 	private static final int CAT_ANIMALS = 2;
 	private static final int CAT_VEHICLES = 3;
 	
+	//private String[][] puzzle;
+	private PuzzleGridView puzz;
+	public static String[][] board = new String[ROWS][COLS];
+	//IDK IF THIS IS THE AMOUNT OF WORDS WE WILL HAVE OR NOT< JUST SET FOR NOW.
+	public static String[] wordList = new String[10];
 	
 	
 	@Override
@@ -40,10 +52,28 @@ public class Game extends Activity {
 		try{
 		Log.e(TAG, "IN GAME");
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.game);
+		//setContentView(R.layout.game);
 		//Get the extras put onto the intent
 		int diff = getIntent().getIntExtra(KEY_DIFF, DIFF_EASY);
 		int cat = getIntent().getIntExtra(KEY_CAT, CAT_RANDOM);
+		//JUST FOR TESTING
+		String names = "jessiasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg";
+		int position = 0;
+		for(int i = 0; i < ROWS; i++){
+			for(int j = 0; j < COLS; j++){
+				
+				char character = names.charAt(position);
+				Game.board[i][j] = Character.toString(character);
+				position++;
+			}
+			
+
+		}
+		wordList[0] = "jess";
+		wordList[1] = "gas";
+		wordList[2] = "sag";
+		puzz = new PuzzleGridView(this);
+		setContentView(puzz);
 		
 		/*
 		 *  Read a file, convert it to a string. Choose file based off of client's
@@ -69,8 +99,9 @@ public class Game extends Activity {
 		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
 		Log.e(TAG, "********IN GAME CAT IS " + cat);
-		
-		
+		//GridView gridview = (GridView) findViewById(R.id.boardGrid);
+		//gridview.setAdapter(new ImageAdapter(this));
+
 		//String[] listWords = selectWords(cat);
 
 		/*
@@ -116,7 +147,7 @@ public class Game extends Activity {
 	    	switch(item.getItemId()){
 	    	case R.id.settings:
 	    		startActivity(new Intent(this, Prefs.class));
-	    		return true;
+	    		break;
 	    	case R.id.about:
 	    		startActivity(new Intent(this, About.class));
 	    		break;
@@ -145,6 +176,11 @@ public class Game extends Activity {
 		 */
 		super.onResume();
 		Music.playMusic(this, R.raw.game);
+	}
+	//Returns the character @ specified index's
+	public String retrieveChar(int row, int col){
+		
+		return board[row][col];
 	}
 	/*private String[] selectWords(int cat){
 		String[] wordArray = new String[10];
