@@ -50,17 +50,14 @@ public class TextParser extends Activity {
 		
 		ArrayList<String> finalWordList = new ArrayList<String>();
 		Random rand = new Random();
+		int tenth = (wordList.size()/10);
 		int temp = rand.nextInt(wordList.size()/10);
-		//int temp2 = 0;
 		
 		// Grabbing ten words, in order, pseudo-randomly.
 		for(int i = 0; i < numWords; i++)
 		{
 			finalWordList.add(wordList.get(temp));
-			//temp2 = temp;
-			temp += rand.nextInt(wordList.size()/10);
-			//if (temp2 == temp)
-				//temp++;				
+			temp = (tenth * i) + rand.nextInt(wordList.size()/10);
 		}
 		
 		finalWordList.trimToSize();

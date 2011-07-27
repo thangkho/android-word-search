@@ -49,7 +49,7 @@ public class Game extends Activity {
 		 *  Read a file, convert it to a string. Choose file based off of client's
 		 *   category selection. PK
 		 */
-			// work on logic to select proper word file
+			// TODO: work on logic to select proper word file
 			InputStream is = this.getAssets().open("basicEnglish.txt");
 			int size = is.available();
 	
