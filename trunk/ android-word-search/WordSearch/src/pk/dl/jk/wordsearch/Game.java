@@ -50,9 +50,13 @@ public class Game extends Activity {
 	//2D array of the word search
 	public String[][] myGrid = new String[10][10];          
     //Random generator
-    public Random random = new Random();
+    private Random random = new Random();
     //Creates a LinkedList of the connected words that will be placed in the grid
-    public LinkedList linkedWords = new LinkedList();
+    private LinkedList linkedWords = new LinkedList();
+    //Holds the words that failed to be put into the grid
+    private String[] failedWords;
+    //used to iterate through failed words
+    private int count = 0;
     
 	
 	
@@ -123,6 +127,7 @@ public class Game extends Activity {
 			
 		//this is the ArrayList filled with our random words (in alphabetical order)
 		wordList = t.getWords(10,wordListText);
+		failedWords = new String[wordList.toArray().length];
 		
 		WordPlacer placer = new WordPlacer();
 		linkedWords = placer.placeInList((String[])wordList.toArray(), diff + 1);
@@ -141,7 +146,11 @@ public class Game extends Activity {
                       placer.placeInGrid(temp.word, temp.getLetter(), myGrid, x, y, 1, true);
                       
                       if(placer.getNotIntheGrid() == true){
-                          //use temp.word to place into main String array
+                          //places any words that didn't go in the faildWords String array
+                    	  for(int i = 0; i < temp.word.length; i++){
+                              failedWords[count] = temp.word[i];
+                              count++;
+                          }
                           placer.setBackFalse();
                       }
                       
@@ -162,7 +171,11 @@ public class Game extends Activity {
                 	  placer.placeInGrid(temp.word, temp.getLetter(), myGrid, 0, 0, (diff + 1), true);
                       
                       if(placer.getNotIntheGrid() == true){
-                    	//use temp.word to place into main String array
+                    	//places any words that didn't go in the faildWords String array
+                    	  for(int i = 0; i < temp.word.length; i++){
+                              failedWords[count] = temp.word[i];
+                              count++;
+                          }
                           placer.setBackFalse();
                       }
                       
@@ -182,7 +195,11 @@ public class Game extends Activity {
                 	  placer.placeInGrid(temp.word, temp.getLetter(), myGrid, 0, 0, (diff + 1), true);
                       
                       if(placer.getNotIntheGrid() == true){
-                    	//use temp.word to place into main String array
+                    	//places any words that didn't go in the faildWords String array
+                    	  for(int i = 0; i < temp.word.length; i++){
+                              failedWords[count] = temp.word[i];
+                              count++;
+                          }
                           placer.setBackFalse();
                       }
                       
@@ -202,7 +219,11 @@ public class Game extends Activity {
                 	  placer.placeInGrid(temp.word, temp.getLetter(), myGrid, 0, 0, (diff + 1), true);
                       
                       if(placer.getNotIntheGrid() == true){
-                    	//use temp.word to place into main String array
+                    	//places any words that didn't go in the faildWords String array
+                    	  for(int i = 0; i < temp.word.length; i++){
+                              failedWords[count] = temp.word[i];
+                              count++;
+                          }
                           placer.setBackFalse();
                       }
                       
