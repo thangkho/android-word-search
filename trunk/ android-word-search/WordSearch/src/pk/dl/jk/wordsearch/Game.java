@@ -38,6 +38,7 @@ public class Game extends Activity {
 	private static final int CAT_PEOPLE = 1;
 	private static final int CAT_ANIMALS = 2;
 	private static final int CAT_VEHICLES = 3;
+	private static final int CAT_PLACES = 4;
 	
 	//private String[][] puzzle;
 	private PuzzleGridView puzz;
@@ -79,22 +80,41 @@ public class Game extends Activity {
 		 *  Read a file, convert it to a string. Choose file based off of client's
 		 *   category selection. PK
 		 */
-			// TODO: work on logic to select proper word file
-			InputStream is = this.getAssets().open("basicEnglish.txt");
-			int size = is.available();
+		// TODO: work on logic to select proper word file
+		String fileName = "";
+		switch(cat){
+		case 0:
+			fileName = "basicEnglish.txt"; 
+			break;
+		case 1:
+			fileName = "people.txt"; 
+			break;
+		case 2:
+			fileName = "animals.txt";
+			break;
+		case 3:
+			fileName = "vehicles.txt";
+			break;
+		case 4:
+			fileName = "places.txt";
+			break;
+		}
+		
+		InputStream is = this.getAssets().open(fileName);
+		int size = is.available();
 	
-	        // Read the entire asset into a local byte buffer.
-	        byte[] buffer = new byte[size];
-	        is.read(buffer);
-	        is.close();
-	        String wordListText = new String(buffer);
-	        
-	        // Create parser, to parse and return word list.
-	        ArrayList<String> wordList = new ArrayList<String>();
-			TextParser t = new TextParser();
+        // Read the entire asset into a local byte buffer.
+        byte[] buffer = new byte[size];
+        is.read(buffer);
+        is.close();
+        String wordListText = new String(buffer);
+        
+        // Create parser, to parse and return word list.
+        ArrayList<String> wordList = new ArrayList<String>();
+		TextParser t = new TextParser();
 			
-			//this is the ArrayList filled with our random words (in alphabetical order)
-			wordList = t.getWords(cat,10,wordListText);
+		//this is the ArrayList filled with our random words (in alphabetical order)
+		wordList = t.getWords(cat,10,wordListText);
 			
 		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
