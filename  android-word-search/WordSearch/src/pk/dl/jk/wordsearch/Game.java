@@ -80,24 +80,23 @@ public class Game extends Activity {
 		 *  Read a file, convert it to a string. Choose file based off of client's
 		 *   category selection. PK
 		 */
-		// TODO: work on logic to select proper word file
 		String fileName = "";
 		switch(cat){
-		case 0:
-			fileName = "basicEnglish.txt"; 
-			break;
-		case 1:
-			fileName = "people.txt"; 
-			break;
-		case 2:
-			fileName = "animals.txt";
-			break;
-		case 3:
-			fileName = "vehicles.txt";
-			break;
-		case 4:
-			fileName = "places.txt";
-			break;
+			case 0:
+				fileName = "basicEnglish.txt"; 
+				break;
+			case 1:
+				fileName = "people.txt"; 
+				break;
+			case 2:
+				fileName = "animals.txt";
+				break;
+			case 3:
+				fileName = "vehicles.txt";
+				break;
+			case 4:
+				fileName = "places.txt";
+				break;
 		}
 		
 		InputStream is = this.getAssets().open(fileName);
@@ -114,7 +113,7 @@ public class Game extends Activity {
 		TextParser t = new TextParser();
 			
 		//this is the ArrayList filled with our random words (in alphabetical order)
-		wordList = t.getWords(cat,10,wordListText);
+		wordList = t.getWords(10,wordListText);
 			
 		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);

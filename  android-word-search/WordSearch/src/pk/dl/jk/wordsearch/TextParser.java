@@ -26,7 +26,7 @@ public class TextParser extends Activity {
 	 *  Now able to scan text file, and return 10 words in alphabetical order. 
 	 *  Words are <=10 characters long, to make sure they fit in our board. PK
 	 */
-	public ArrayList<String> getWords(int list, int numWords, String wordListText) throws IOException
+	public ArrayList<String> getWords(int numWords, String wordListText) throws IOException
 	{
 		ArrayList<String> wordList = new ArrayList<String>();
 		
