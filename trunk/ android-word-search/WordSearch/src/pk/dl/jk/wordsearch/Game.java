@@ -48,11 +48,12 @@ public class Game extends Activity {
 	public static String[] wordList = new String[10];
 	
 	//2D array of the word search
-	public String[][] myGrid = new String[9][9];          
-	//Holds the level of difficulty of the game
-    public int level = 0;
+	public String[][] myGrid = new String[10][10];          
     //Random generator
     public Random random = new Random();
+    //Creates a LinkedList of the connected words that will be placed in the grid
+    public LinkedList linkedWords = new LinkedList();
+    
 	
 	
 	@Override
@@ -122,7 +123,94 @@ public class Game extends Activity {
 			
 		//this is the ArrayList filled with our random words (in alphabetical order)
 		wordList = t.getWords(10,wordListText);
-			
+		
+		WordPlacer placer = new WordPlacer();
+		linkedWords = placer.placeInList((String[])wordList.toArray(), diff + 1);
+		
+		 WordNode temp;
+         
+         if((diff + 1) == 1){
+              temp = linkedWords.allTheOtherKids(4);          
+         
+              if(temp != null){
+                  while(temp != null){
+                      
+                	  int x = random.nextInt(10);
+                	  int y = random.nextInt(10);
+                    
+                      placer.placeInGrid(temp.word, temp.getLetter(), myGrid, x, y, 1, true);
+                      
+                      if(placer.getNotIntheGrid() == true){
+                          //use temp.word to place into main String array
+                          placer.setBackFalse();
+                      }
+                      
+                      temp = linkedWords.allTheOtherKids(4);
+                  }   
+              }
+          }
+              
+          if((diff + 1) == 1 || (diff + 1) == 2){
+              temp = linkedWords.allTheOtherKids(3);          
+         
+              if(temp != null){
+                  while(temp != null){
+
+                	  int x = random.nextInt(10);
+                	  int y = random.nextInt(10); 
+                      
+                	  placer.placeInGrid(temp.word, temp.getLetter(), myGrid, 0, 0, (diff + 1), true);
+                      
+                      if(placer.getNotIntheGrid() == true){
+                    	//use temp.word to place into main String array
+                          placer.setBackFalse();
+                      }
+                      
+                      temp = linkedWords.allTheOtherKids(3);
+                  }   
+              }
+          }
+              
+              temp = linkedWords.allTheOtherKids(2);          
+         
+              if(temp != null){
+                  while(temp != null){
+                      
+                	  int x = random.nextInt(10);
+                	  int y = random.nextInt(10);
+                      
+                	  placer.placeInGrid(temp.word, temp.getLetter(), myGrid, 0, 0, (diff + 1), true);
+                      
+                      if(placer.getNotIntheGrid() == true){
+                    	//use temp.word to place into main String array
+                          placer.setBackFalse();
+                      }
+                      
+                      temp = linkedWords.allTheOtherKids(2);
+                  }   
+              }
+ 
+              
+              temp = linkedWords.allTheOtherKids(1);          
+         
+              if(temp != null){
+                  while(temp != null){
+                      
+                	  int x = random.nextInt(10);
+                	  int y = random.nextInt(10);
+                      
+                	  placer.placeInGrid(temp.word, temp.getLetter(), myGrid, 0, 0, (diff + 1), true);
+                      
+                      if(placer.getNotIntheGrid() == true){
+                    	//use temp.word to place into main String array
+                          placer.setBackFalse();
+                      }
+                      
+                      temp = linkedWords.allTheOtherKids(1);
+                  }   
+              }
+		
+		placer.addRandomChars(myGrid);
 		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
 		Log.e(TAG, "********IN GAME CAT IS " + cat);
