@@ -29,6 +29,7 @@
         <item>People</item>
         <item>Animals</item>
         <item>Vehicles</item>
+        <item>Place</item>
     </string-array>
         <string name="thirdMenuItem">third item</string>
 </resources>
