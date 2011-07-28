@@ -2,6 +2,7 @@ package pk.dl.jk.wordsearch;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -45,6 +46,13 @@ public class Game extends Activity {
 	public static String[][] board = new String[ROWS][COLS];
 	//IDK IF THIS IS THE AMOUNT OF WORDS WE WILL HAVE OR NOT< JUST SET FOR NOW.
 	public static String[] wordList = new String[10];
+	
+	//2D array of the word search
+	public String[][] myGrid = new String[9][9];          
+	//Holds the level of difficulty of the game
+    public int level = 0;
+    //Random generator
+    public Random random = new Random();
 	
 	
 	@Override
