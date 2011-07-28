@@ -10,21 +10,21 @@ import java.lang.String;
 
 public class WordPlacer {
 	public Random rand = new Random();
-	public final int NORTH = 1;
-	public final int WEST = 2;
-	public final int EAST = 3;
-	public final int SOUTH = 4;
-	public final int NORTHWEST = 5;
-	public final int NORTHEAST = 6;
-	public final int SOUTHWEST = 7;
-	public final int SOUTHEAST = 8;
-	public String[] alreadyUsed = new String[100];
+	private final int NORTH = 1;
+	private final int WEST = 2;
+	private final int EAST = 3;
+	private final int SOUTH = 4;
+	private final int NORTHWEST = 5;
+	private final int NORTHEAST = 6;
+	private final int SOUTHWEST = 7;
+	private final int SOUTHEAST = 8;
+	private String[] alreadyUsed = new String[100];
     //Use determines how many times we should try and attempt to place a group of words into the grid
-    int use = -1;
-    public boolean failed = false;
+	private int use = -1;
+	private boolean failed = false;
     
     
-    public boolean getIntheGrid(){
+    public boolean getNotIntheGrid(){
     	return failed;
     }
     
@@ -32,6 +32,20 @@ public class WordPlacer {
     	failed = false;
     }
 
+    //Fills the grid with random characters
+    public void addRandomChars(String[][] myGrid){
+    	 String[] alpha = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","a","e","i","o","u" };
+ 
+         for(int i = 0; i < 10; i++){
+             for(int k = 0; k < 10; k++){
+                 if(myGrid[i][k].equalsIgnoreCase("*")){
+                     int num = rand.nextInt(31);
+                     myGrid[i][k] = alpha[num];
+                 }
+             }
+         }
+    }
+    
     
     /**Places words read from a text file into a link list that stores String arrays */
     public LinkedList placeInList(String[] wordArray, int level)
