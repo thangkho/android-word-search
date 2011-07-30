@@ -132,6 +132,13 @@ public class Game extends Activity {
 		WordPlacer placer = new WordPlacer();
 		linkedWords = placer.placeInList((String[])wordList.toArray(), diff + 1);
 		
+		//Fills the grid with * so that the words can be placed
+		for(int i = 0; i < 10; i++){
+            for(int k = 0; k < 10; k++){
+                 myGrid[i][k] = "*";
+             }
+         }
+		
 		 WordNode temp;
          
          if((diff + 1) == 1){
