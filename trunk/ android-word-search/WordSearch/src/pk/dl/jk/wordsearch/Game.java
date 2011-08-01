@@ -266,15 +266,18 @@ public class Game extends Activity {
               }
               //Removing words from list that could not be placed...
 		for(int i = 0; i < failedWords.length - 1; i++) {
-			if(aWordList.get(i).equalsIgnoreCase(failedWords[i])) {
-				aWordList.remove(i);
+			if(aWordList.contains(failedWords[i])) {
+				aWordList.remove(failedWords[i]);
 			}
 		}
+		
 		String rand = "";
+		String failed = "";
 		for(int i = 0; i < aWordList.size(); i++){
 			rand += " " + aWordList.get(i);
+			failed += " " + failedWords[i];
 		}
-		Log.e(TAG, " WordListAFTER: " + rand);
+		Log.e(TAG, " WordListAFTER: " + rand + " FAILED WORDS " + failed);
 		
 		placer.addRandomChars(myGrid);
 		
