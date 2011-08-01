@@ -269,15 +269,15 @@ public class Game extends Activity {
                       temp = linkedWords.allTheOtherKids(1);
                   }   
               }
-        
-        //Removing words from list that could not be placed...
-              /*
-		for(int i = 0; i < failedWords.length; i++) {
-			if(aWordList.contains(failedWords[i])) {
-				aWordList.remove(failedWords[i]);
-			}
+        //Removing words from list that could not be placed...		
+		int acount = 0;
+		while(failedWords[acount] != null){
+			if(aWordList.contains(failedWords[acount])) {
+				aWordList.remove(failedWords[acount]);
+			}		
+			acount++;
 		}
-		*/
+		
 		/*
 		int plus = 0;
 		while(failedWords[plus] != null){
@@ -421,49 +421,5 @@ public class Game extends Activity {
 		
 		return board[row][col];
 	}
-	/*private String[] selectWords(int cat){
-		String[] wordArray = new String[10];
-		switch(cat){
-		//Random
-		case CAT_RANDOM:
-			
-			// go into the file or db? and choose from any
-			 // of the lists tagged as "random"
-			 //
-			break;
-		//People
-		case CAT_PEOPLE:
-			break;
-		//Animals
-		case CAT_ANIMALS:
-			break;
-		//Vehicles
-		case CAT_VEHICLES:
-			break;
-		//CHANGE OR ADD MORE HERE IF NECESSARY
-		}
-		
-		return wordArray;
-		
-	}*/
-	/*private void createBoard(int diff, String[] array){
-		
-		 // Takes the diff and array of words and 
-		 // performs an algorithm to add to a 2D
-		 // array which represents the board.
-		 //
-		//NEED TO ACTUALLY CALC THE BOARD HEIGHT AND WIDTH AND PUT IN TO ARRAY CONSTRUCTOR!!
-		int height = 30;
-		int width = 20;
-		String[][] board = new String[width][height];
-		
-		for(int i = 0; i < height; i++){
-			for(int j = 0; j < width; j++){
-				board[i][j] = "*";
-			}
-		}
-		
-		
-	}*/
 
 }
