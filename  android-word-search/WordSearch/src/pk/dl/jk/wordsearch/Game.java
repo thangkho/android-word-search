@@ -6,6 +6,7 @@ import java.util.Random;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,29 +83,29 @@ public class Game extends Activity {
 			foundBoard = fromPuzzleString(getPreferences(MODE_PRIVATE).getString(FOUND_PUZZLE, toPuzzleString(foundBoard)));
 
 		}else {
-			//JUST FOR TESTING
-			String names = "jessiasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg";
-			int position = 0;
-			for(int i = 0; i < ROWS; i++){
-				for(int j = 0; j < COLS; j++){
-				
-					char character = names.charAt(position);
-					Game.board[i][j] = Character.toString(character);
-					foundBoard[i][j] = Character.toString(character);
-					position++;
-				}
-			
-
-			}
-			aWordList.add("jess");
-			aWordList.add("gas");
-			aWordList.add("sag");
-		}
+//			//JUST FOR TESTING
+//			String names = "jessiasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg";
+//			int position = 0;
+//			for(int i = 0; i < ROWS; i++){
+//				for(int j = 0; j < COLS; j++){
+//				
+//					char character = names.charAt(position);
+//					Game.board[i][j] = Character.toString(character);
+//					foundBoard[i][j] = Character.toString(character);
+//					position++;
+//				}
+//			
+//
+//			}
+//			aWordList.add("jess");
+//			aWordList.add("gas");
+//			aWordList.add("sag");
+//		}
 		
-		
-		//CHANGED
-		puzz = new PuzzleGridView(this);
-		setContentView(puzz);
+//		
+//		//CHANGED
+//		puzz = new PuzzleGridView(this);
+//		setContentView(puzz);
 		
 		/*
 		 *  Read a file, convert it to a string. Choose file based off of client's
@@ -146,10 +147,12 @@ public class Game extends Activity {
 			
 		//this is the ArrayList filled with our random words (in alphabetical order)
 		wordList = t.getWords(10,wordListText);
+		aWordList = wordList;
 		failedWords = new String[wordList.toArray().length];
 		
 		WordPlacer placer = new WordPlacer();
-		linkedWords = placer.placeInList((String[])wordList.toArray(), diff + 1);
+		//***THROWING ERROR HERE DOES NOT LIKE CASTING TO STRING[]
+		linkedWords = placer.placeInList(wordList.toArray(), diff + 1);
 		
 		//Fills the grid with * so that the words can be placed
 		for(int i = 0; i < 10; i++){
@@ -259,32 +262,38 @@ public class Game extends Activity {
 		
 		placer.addRandomChars(myGrid);
 		
+		//TEST
+		String asd = "";
+		for(int i = 0; i < ROWS; i++){
+			for(int j = 0; j < COLS; j++){
+				asd += myGrid[i][j]; 
+			}
+			
+		}
+		Log.e(TAG, " board: " + asd);
+		board = myGrid;
+		for(int i = 0; i < ROWS; i++){
+			for(int j = 0; j <COLS; j++){
+				foundBoard[i][j] = myGrid[i][j];
+			}
+		}
+		
+		
+		
+		}
+		puzz = new PuzzleGridView(this);
+		setContentView(puzz);
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
 		Log.e(TAG, "********IN GAME CAT IS " + cat);
 		
 
-		//String[] listWords = selectWords(cat);
-
-		/*
-		 * need to put here a way to get the puzzle with the 
-		 * selected difficulty and category. Create a method 
-		 * that takes an int for the category then randomly 
-		 * selects the words from the chosen category. Also
-		 * create a getPuzzle method that takes an int indicating
-		 * difficulty, and a string array (the list of words returned
-		 * by the getCategory method). Also need to create a
-		 * method that then populates
-		 * the 2D array with the words in the array of chosen
-		 * words.
-		 */
-		
-		//createBoard(diff, listWords);
 		}
 		catch(Exception e){
 			Log.e("ERROR", "ERROR IN CODE: " + e.toString());
 			e.printStackTrace();
 		}
 	}
+	
 
 	 @Override
 	    public boolean onCreateOptionsMenu(Menu menu){
@@ -332,9 +341,9 @@ public class Game extends Activity {
 		WordSearchActivity.isContinuing = true;
 		Music.stopMusic(this);
 		getPreferences(MODE_PRIVATE).edit().putString(ORIG_PUZZLE,
-	            toPuzzleString(board)).commit();
+	            toPuzzleString(board)).commit();//board
 		getPreferences(MODE_PRIVATE).edit().putString(FOUND_PUZZLE,
-	            toPuzzleString(foundBoard)).commit();
+	            toPuzzleString(foundBoard)).commit();//foundboard
 				
 	}
 	

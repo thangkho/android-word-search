@@ -3,6 +3,7 @@ package pk.dl.jk.wordsearch;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,8 +16,8 @@ public class DragListener implements OnTouchListener {
 
 	private float myPosX;
 	private float myPosY;
-	private float myFirstTouchX;
-	private float myFirstTouchY;
+	public static float myFirstTouchX;
+	public static float myFirstTouchY;
 	private float myLastTouchX;
 	private float myLastTouchY;
 	private String word = "";
@@ -25,6 +26,9 @@ public class DragListener implements OnTouchListener {
 	private GridView myCallingGrid;
 	ImageAdapter a;
 	int[] positionsCrossed = new int[10];
+	
+	//public static Point endPoint = new Point();
+	//public static Point startPoint = new Point();
 
 	private static final int INVALID_POINTER_ID = -1;
 	//active ID, @ first it is invalid.
@@ -100,8 +104,11 @@ public class DragListener implements OnTouchListener {
 							//set them all to found
 							a.swapToFound(positionsCrossed[j]);
 							//set to -1 to flag as unused
-							positionsCrossed[j] = -1;							
+							positionsCrossed[j] = -1;						
+							
 						}
+						//CHANGED WANTED TO DRAW A LINE SO IT'S EASIER, CAN'T FIGURE OUT HOW						
+						//startPoint.set((int)myFirstTouchX, (int)myFirstTouchY);
 						//Update handles setting the txt label and removing word
 						PuzzleGridView.update(i);
 						
@@ -174,6 +181,9 @@ public class DragListener implements OnTouchListener {
 			//If the point was found
 			if(position != lastPosition )//&& position != -1
 			{
+				
+				//endPoint.set(theX, theY);
+				
 				Log.e("LASTPOSITION: " + lastPosition, "CURRENTPOSITION:" + position);
 				lastPosition = position;
 				this.addToPositionsCrossed(position);				
