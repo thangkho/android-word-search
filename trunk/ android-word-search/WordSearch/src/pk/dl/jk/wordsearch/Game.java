@@ -290,7 +290,10 @@ public class Game extends Activity {
 		String failed = "";
 		for(int i = 0; i < aWordList.size(); i++){
 			rand += " " + aWordList.get(i);
+		}
+		for(int i = 0; i < failedWords.length; i++){
 			failed += " " + failedWords[i];
+
 		}
 		Log.e(TAG, " WordListAFTER: " + rand + "\n FAILED WORDS " + failed);
 		
