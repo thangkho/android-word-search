@@ -40,7 +40,7 @@ public class PuzzleGridView extends LinearLayout{
         View game = inflater.inflate(R.layout.game, this, false);
         addView(game);
         txt = (TextView) findViewById(R.id.txtWordList);
-        txt.setText(Game.aWordList.get(0));
+        txt.setText(Game.aWordList.get(0).toUpperCase());
         
         btnFwd = (Button) findViewById(R.id.btnFwd);
         btnFwd.setOnClickListener(new OnClickListener(){
@@ -54,7 +54,7 @@ public class PuzzleGridView extends LinearLayout{
 				else {
 					wordListPosition = 0;					
 				}
-				txt.setText(Game.aWordList.get(wordListPosition));
+				txt.setText(Game.aWordList.get(wordListPosition).toUpperCase());
 			}
         	
         });
@@ -70,7 +70,7 @@ public class PuzzleGridView extends LinearLayout{
 				else {
 					wordListPosition--;
 				}
-				txt.setText(Game.aWordList.get(wordListPosition));
+				txt.setText(Game.aWordList.get(wordListPosition).toUpperCase());
 				
 			}
         	
@@ -84,10 +84,10 @@ public class PuzzleGridView extends LinearLayout{
 		if(Game.aWordList.size() - 1 > 0){
 			//If it's less than the last index value
 			if(wordIndex < Game.aWordList.size() - 1){
-				txt.setText(Game.aWordList.get(wordIndex + 1));	
+				txt.setText(Game.aWordList.get(wordIndex + 1).toUpperCase());	
 			}
 			else {
-				txt.setText(Game.aWordList.get(wordIndex - 1));
+				txt.setText(Game.aWordList.get(wordIndex - 1).toUpperCase());
 			}
 		}
 		//remove the word
