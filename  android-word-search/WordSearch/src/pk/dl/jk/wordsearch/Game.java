@@ -363,7 +363,7 @@ public class Game extends Activity {
 
 	    	  }
 	      }
-	      Log.e(TAG, " " + buf.toString());
+	      Log.e(TAG, " IN TO PUZZ STRING\n, PUZZ STRING: " + buf.toString());
 	      return buf.toString();
 	   }
 
