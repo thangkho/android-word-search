@@ -20,7 +20,7 @@ public class WordPlacer {
 	private final int NORTHEAST = 6;
 	private final int SOUTHWEST = 7;
 	private final int SOUTHEAST = 8;
-	private String[] alreadyUsed = new String[100];
+	private String[] alreadyUsed = new String[25];
     //Use determines how many times we should try and attempt to place a group of words into the grid
 	private int use = -1;
 	private boolean failed = false;
@@ -563,7 +563,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                             //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                     }
                                     //End of the loop that puts the individual characters from each word into the grid
                                     
@@ -754,7 +754,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                             //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                     }
                                     //End of the loop that puts the individual characters from each word into the grid
                                     
@@ -910,7 +910,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                             //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                     }
                                     //End of the loop that puts the individual characters from each word into the grid
                                     
@@ -1062,7 +1062,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                             //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                     }
                                     //End of the loop that puts the individual characters from each word into the grid
                                     
@@ -1186,7 +1186,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                             //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                     }
                                     //End of the loop that puts the individual characters from each word into the grid
                                     
@@ -1292,7 +1292,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                             //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                     }
                                     //End of the loop that puts the individual characters from each word into the grid
                                     
@@ -1394,7 +1394,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                         //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                        }
                                        //End of the loop that puts the individual characters from each word into the grid
                                                 
@@ -1497,7 +1497,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                         //Emptys the alreadyUsed array so the next list of words can be put in to the placeInGrid() method
                                             use = -1;
                                             alreadyUsed = null;
-                                            alreadyUsed = new String[100];
+                                            alreadyUsed = new String[25];
                                        }
                                        //End of the loop that puts the individual characters from each word into the grid
                                                 
@@ -1526,7 +1526,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             System.out.println("Resulted in an Exception");
             use = -1;
             alreadyUsed = null;
-            alreadyUsed = new String[100];
+            alreadyUsed = new String[25];
             failed = true;
                 
             return;
@@ -1542,10 +1542,10 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             int count = 0;
             
              //if the all locations are used then empty the String array, and stop the method
-            if(use >= 75){
+            if(use >= 25){
                 use = -1;
                 alreadyUsed = null;
-                alreadyUsed = new String[100];
+                alreadyUsed = new String[25];
                 failed = true;
                 
                 return;
