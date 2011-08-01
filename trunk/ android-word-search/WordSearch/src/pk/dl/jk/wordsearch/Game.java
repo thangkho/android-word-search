@@ -146,7 +146,7 @@ public class Game extends Activity {
 
 			
 		//this is the ArrayList filled with our random words (in alphabetical order)
-		wordList = t.getWords(10,wordListText);
+		wordList = t.getWords(14,wordListText);
 		aWordList = wordList;
 		failedWords = new String[wordList.toArray().length];
 		String rand2 = "";
