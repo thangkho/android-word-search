@@ -4,24 +4,22 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
-import android.widget.LinearLayout.LayoutParams;
 
 public class PuzzleGridView extends LinearLayout{
-	//It is a view that contains a gridview and a label for the words @ the top
-	private static Game THEGAME;
-	private static final int ID = 32; //game ID
+	
+	private static final int ID = 32; 
 	
 	public static int width;
 	public static int height;
@@ -117,10 +115,20 @@ public class PuzzleGridView extends LinearLayout{
 			alert.show();
 		}
 	}
+	
+	/*@Override
+	public void onDraw(Canvas canvas){
+		Log.e("***IN PUZZ VIEW ON DRAW", "on draw");
+		Point start = DragListener.startPoint;
+		Point end = DragListener.endPoint;
+		Paint paint  = new Paint();
+		paint.setColor(Color.BLACK);
+		canvas.drawLine(start.x, start.y, end.x, end.y, paint);
+	}*/
   
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		
+
 		View v = findViewById(R.id.relLayoutGame);
 		//height of the relative layout that holds the words and btns
 		int relLayHeight = v.getMeasuredHeight();

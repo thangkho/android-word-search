@@ -1,6 +1,8 @@
 package pk.dl.jk.wordsearch;
 import java.util.*;
 import java.lang.String;
+
+import android.util.Log;
 /**
  * Tests the Methods of the Linked List class
  * 
@@ -48,8 +50,16 @@ public class WordPlacer {
     
     
     /**Places words read from a text file into a link list that stores String arrays */
-    public LinkedList placeInList(String[] wordArray, int level)
+    //public LinkedList placeInList(String[] wordArray, int level)
+    public LinkedList placeInList(Object[] aWordArray, int level)
+
     {
+    	String[] wordArray = new String[aWordArray.length];
+    	for(int i = 0; i < aWordArray.length; i++){
+    		
+    		wordArray[i] = (String)aWordArray[i];
+    		Log.e("IN WORD PLACER FOR LOOP", " CONVERTING TO STRING " + (String)aWordArray[i]);
+    	}
         LinkedList connectedWords = new LinkedList();
         String[] pairs;
         String let = null;        //the letter that the words have in common, also stored in linked list
