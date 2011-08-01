@@ -16,6 +16,8 @@ import android.app.AlertDialog;
 public class WordSearchActivity extends Activity implements OnClickListener {
 	private static final String TAG = "WordSearch";
 	private static int difficulty;
+	private static View continBtn;
+	public static boolean isContinuing = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
@@ -23,8 +25,15 @@ public class WordSearchActivity extends Activity implements OnClickListener {
         setContentView(R.layout.main);
         
         //Set up onClick Listeners for all of the btns
-        View continBtn = findViewById(R.id.btnContinue);
+        continBtn = findViewById(R.id.btnContinue);
         continBtn.setOnClickListener(this);
+        continBtn.setEnabled(false);
+        /*if(!isContinuing){
+        	continBtn.setEnabled(false);
+        }
+        else {
+        	continBtn.setEnabled(true);
+        }*/
         View newGameBtn = findViewById(R.id.btnNewGame);
         newGameBtn.setOnClickListener(this);       
         View exitBtn = findViewById(R.id.btnExit);
@@ -35,9 +44,7 @@ public class WordSearchActivity extends Activity implements OnClickListener {
     public void onPause(){
     	/*
     	 * just needs to call the super onPause b/c in here we 
-    	 * do not need to save much except for maybe the status 
-    	 * of music/sounds? The Music class should handle checking
-    	 * in the preferences to see if the music is enabled or not
+    	 * do not need to save much.
     	 */
     	super.onPause();
     	Music.stopMusic(this);
@@ -45,11 +52,16 @@ public class WordSearchActivity extends Activity implements OnClickListener {
     }
     @Override
     public void onResume(){
-    	/*
-    	 * same as above, may need to add in more 
-    	 * when we get the music/sounds implemented.
-    	 */
+    	//same as above    	 
     	super.onResume();
+    	Log.e(TAG, "IN ON RESUME **");
+    	if(isContinuing){
+    		Log.e(TAG, "In CONTIN  TRUE");
+    		continBtn.setEnabled(true);
+    	}
+    	else{
+    		continBtn.setEnabled(false);
+    	}
     	Music.playMusic(this, R.raw.main);
     }
     @Override
