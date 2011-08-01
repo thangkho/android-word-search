@@ -259,7 +259,12 @@ public class Game extends Activity {
                       temp = linkedWords.allTheOtherKids(1);
                   }   
               }
-		
+              //Removing words from list that could not be placed...
+		for(int i = 0; i < failedWords.length - 1; i++) {
+			if(aWordList.get(i).equalsIgnoreCase(failedWords[i])) {
+				aWordList.remove(i);
+			}
+		}
 		placer.addRandomChars(myGrid);
 		
 		//TEST
