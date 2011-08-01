@@ -1,10 +1,14 @@
 package pk.dl.jk.wordsearch;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.GridView;
 
 public class DragListener implements OnTouchListener {
@@ -45,8 +49,8 @@ public class DragListener implements OnTouchListener {
 			case MotionEvent.ACTION_DOWN:{
 				Log.e("IN ON TOUCH","ACTION DOWN");
 			    //Use the min and max to make sure we stay on the screen.
-				final float x = ev.getX();//Math.min(Math.max(ev.getX(), 0), myCallingGrid.getWidth());
-				final float y = ev.getY();//Math.min(Math.max(ev.getY(), 0), myCallingGrid.getHeight());
+				final float x = ev.getX();
+				final float y = ev.getY();
 				//This is to remember where the down took place(where the drag started)
 				myFirstTouchX = x;
 				myFirstTouchY = y;
@@ -66,8 +70,8 @@ public class DragListener implements OnTouchListener {
 				//find the index of the current pointer (the orig)
 				final int pointerIndex = ev.findPointerIndex(myActivePointerID);
 				
-				final float x = ev.getX(pointerIndex);//Math.min(Math.max(ev.getX(pointerIndex), 0), myCallingGrid.getWidth());
-				final float y = ev.getY(pointerIndex);//Math.min(Math.max(ev.getY(pointerIndex), 0), myCallingGrid.getHeight());
+				final float x = ev.getX(pointerIndex);
+				final float y = ev.getY(pointerIndex);
 				//Distance moved
 				final float distanceX = (x - myLastTouchX);
 				final float distanceY = (y - myLastTouchY);
@@ -89,8 +93,8 @@ public class DragListener implements OnTouchListener {
 				myActivePointerID = INVALID_POINTER_ID;
 				//Iterate through the list to see if the word matches 
 				//any of the list words.
-				for(int i = 0; i < Game.wordList.length; i++){
-					if(word.equalsIgnoreCase(Game.wordList[i]))
+				for(int i = 0; i < Game.aWordList.size(); i++){
+					if(word.equalsIgnoreCase(Game.aWordList.get(i)))
 					{//If it equals one, change the positions crossed
 						for(int j = 0; j < positionsCrossed.length; j++){
 							//set them all to found
@@ -98,8 +102,11 @@ public class DragListener implements OnTouchListener {
 							//set to -1 to flag as unused
 							positionsCrossed[j] = -1;							
 						}
-						//set the position in the word list to an empty string
-						Game.wordList[i] = "";						
+						//Update handles setting the txt label and removing word
+						PuzzleGridView.update(i);
+						
+						
+						
 					}
 				}
 				//swap them back to not highlighted
@@ -141,12 +148,12 @@ public class DragListener implements OnTouchListener {
 		Log.e("MY LAST TOUCH", "X: " + myLastTouchX + "Y: " + myLastTouchY);
 		Log.e("MY CURRENT POS", "X: " + myPosX + "Y: " + myPosY);
 		
+		if(position != -1) {
 		Rect outRect = new Rect();
 		//Calculates the coords of the drawing rectangle and puts them into outRect
 		//Use this to calc the exact center of the specific imageView x,y coords below
 		myCallingGrid.getChildAt(position).getDrawingRect(outRect);
-		//int rectCenterX = outRect.centerX(); 24
-		//int rectCenterY = outRect.centerY(); 48
+		
 
 		//calculate the exact center of the specific view by taking the center 
 		//coords of a generic rect with the same dimensions as one of the img views
@@ -165,7 +172,7 @@ public class DragListener implements OnTouchListener {
 		//selected due to fat finger syndrome =)
 		if(Math.abs(myPosX - theX) < 20 && Math.abs(myPosY - theY) < 20){
 			//If the point was found
-			if(position != -1 && position != lastPosition )
+			if(position != lastPosition )//&& position != -1
 			{
 				Log.e("LASTPOSITION: " + lastPosition, "CURRENTPOSITION:" + position);
 				lastPosition = position;
@@ -173,10 +180,11 @@ public class DragListener implements OnTouchListener {
 				a.swapToHighlight(position);
 				a.notifyDataSetChanged();
 				//Add directly to a string for comparison with real word
-				word += Game.board[(int)position/10][position%10];
+				word += Game.board[(int)position/Game.COLS][position%Game.COLS];
 				Log.e("WORD IS", ":" + word);				
 			}
 		}
+		} 
 		return true;
 	}
 	//Adds the current position into the array of positions

@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -29,7 +31,11 @@ public class Game extends Activity {
 	//ACCESSED BY OTHER CLASSES DO NOT DELETE
 	public static final int ROWS = 10;
 	public static final int COLS = 10;
+
 	//public static final String KEY_CATEGORY = "pk.dl.jk.wordsearch.category";
+	private static final String ORIG_PUZZLE = "opuzzle";
+	private static final String FOUND_PUZZLE = "fpuzzle";
+
 	private static final int DIFF_EASY = 0;
 	private static final int DIFF_MEDIUM = 1;
 	private static final int DIFF_HARD = 2;
@@ -41,11 +47,11 @@ public class Game extends Activity {
 	private static final int CAT_VEHICLES = 3;
 	private static final int CAT_PLACES = 4;
 	
-	//private String[][] puzzle;
 	private PuzzleGridView puzz;
 	public static String[][] board = new String[ROWS][COLS];
+	public static String[][] foundBoard = new String[ROWS][COLS];
 	//IDK IF THIS IS THE AMOUNT OF WORDS WE WILL HAVE OR NOT< JUST SET FOR NOW.
-	public static String[] wordList = new String[10];
+	public static ArrayList<String> aWordList = new ArrayList<String>();
 	
 	//2D array of the word search
 	public String[][] myGrid = new String[10][10];          
@@ -65,27 +71,38 @@ public class Game extends Activity {
 		//IF ERROR IS THROWN, IT IS CAUGHT AND PRINTED TO THE LOGCAT IN E. 
 		try{
 		Log.e(TAG, "IN GAME");
-		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.game);
+		super.onCreate(savedInstanceState);		
+
 		//Get the extras put onto the intent
 		int diff = getIntent().getIntExtra(KEY_DIFF, DIFF_EASY);
 		int cat = getIntent().getIntExtra(KEY_CAT, CAT_RANDOM);
-		//JUST FOR TESTING
-		String names = "jessiasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg";
-		int position = 0;
-		for(int i = 0; i < ROWS; i++){
-			for(int j = 0; j < COLS; j++){
+		//if the diff is -1 (continue) need to get the stuff saved from onPause()
+		if(diff == CONTINUING_GAME){
+			board = fromPuzzleString(getPreferences(MODE_PRIVATE).getString(ORIG_PUZZLE, toPuzzleString(board)));
+			foundBoard = fromPuzzleString(getPreferences(MODE_PRIVATE).getString(FOUND_PUZZLE, toPuzzleString(foundBoard)));
+
+		}else {
+			//JUST FOR TESTING
+			String names = "jessiasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfgasdfg";
+			int position = 0;
+			for(int i = 0; i < ROWS; i++){
+				for(int j = 0; j < COLS; j++){
 				
-				char character = names.charAt(position);
-				Game.board[i][j] = Character.toString(character);
-				position++;
-			}
+					char character = names.charAt(position);
+					Game.board[i][j] = Character.toString(character);
+					foundBoard[i][j] = Character.toString(character);
+					position++;
+				}
 			
 
+			}
+			aWordList.add("jess");
+			aWordList.add("gas");
+			aWordList.add("sag");
 		}
-		wordList[0] = "jess";
-		wordList[1] = "gas";
-		wordList[2] = "sag";
+		
+		
+		//CHANGED
 		puzz = new PuzzleGridView(this);
 		setContentView(puzz);
 		
@@ -115,6 +132,7 @@ public class Game extends Activity {
 		InputStream is = this.getAssets().open(fileName);
 		int size = is.available();
 	
+
         // Read the entire asset into a local byte buffer.
         byte[] buffer = new byte[size];
         is.read(buffer);
@@ -124,6 +142,7 @@ public class Game extends Activity {
         // Create parser, to parse and return word list.
         ArrayList<String> wordList = new ArrayList<String>();
 		TextParser t = new TextParser();
+
 			
 		//this is the ArrayList filled with our random words (in alphabetical order)
 		wordList = t.getWords(10,wordListText);
@@ -242,8 +261,7 @@ public class Game extends Activity {
 		
 		Log.e(TAG, "************IN GAME DIFF IS " + diff);
 		Log.e(TAG, "********IN GAME CAT IS " + cat);
-		//GridView gridview = (GridView) findViewById(R.id.boardGrid);
-		//gridview.setAdapter(new ImageAdapter(this));
+		
 
 		//String[] listWords = selectWords(cat);
 
@@ -267,6 +285,7 @@ public class Game extends Activity {
 			e.printStackTrace();
 		}
 	}
+
 	 @Override
 	    public boolean onCreateOptionsMenu(Menu menu){
 	    	/* Creates the options menu
@@ -308,18 +327,52 @@ public class Game extends Activity {
 		/*
 		 * 	NEED TO SAVE BOARD STATE IN HERE
 		 */
+		Log.e(TAG, "IN GAME ON PAUSE");
 		super.onPause();
-		Music.stopMusic(this);		
+		WordSearchActivity.isContinuing = true;
+		Music.stopMusic(this);
+		getPreferences(MODE_PRIVATE).edit().putString(ORIG_PUZZLE,
+	            toPuzzleString(board)).commit();
+		getPreferences(MODE_PRIVATE).edit().putString(FOUND_PUZZLE,
+	            toPuzzleString(foundBoard)).commit();
+				
 	}
 	
 	@Override
 	protected void onResume(){
-		/*
-		 * NEED TO REINSTATE THE BOARD
-		 */
+		
 		super.onResume();
 		Music.playMusic(this, R.raw.game);
 	}
+	
+	/** Convert an array into a puzzle string */
+	   static private String toPuzzleString(String[][] puzzle) {
+	      StringBuilder buf = new StringBuilder();
+	      for (int i = 0; i < ROWS; i++) {
+	    	  for(int j = 0; j < COLS; j++){
+	 	         buf.append(puzzle[i][j]);
+
+	    	  }
+	      }
+	      Log.e(TAG, " " + buf.toString());
+	      return buf.toString();
+	   }
+
+	   /** Convert a puzzle string into an array */
+	   static protected String[][] fromPuzzleString(String string) {
+		   
+	      String[][] puz = new String[ROWS][COLS];
+	      int position = 0;
+	      for (int i = 0; i < ROWS; i++) {
+	    	  for(int j = 0; j < COLS; j++){
+	    		  
+		 	        puz[i][j] = Character.toString(string.charAt(position));
+		 	        position++;
+	    	  }
+	    	 
+	      }
+	      return puz;
+	   }
 	//Returns the character @ specified index's
 	public String retrieveChar(int row, int col){
 		
