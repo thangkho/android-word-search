@@ -63,7 +63,7 @@ public class Game extends Activity {
     //Holds the words that failed to be put into the grid
     private String[] failedWords;
     //used to iterate through failed words
-    private int count = 0;
+    private int count;
     
 	
 	
@@ -151,6 +151,7 @@ public class Game extends Activity {
 		//this is the ArrayList filled with our random words (in alphabetical order)
 		wordList = t.getWords(14,wordListText);
 		aWordList = wordList;
+		count = 0;
 		failedWords = new String[wordList.toArray().length];
 		String rand2 = "";
 		for(int i = 0; i < aWordList.size(); i++){
@@ -160,6 +161,7 @@ public class Game extends Activity {
 		
 		WordPlacer placer = new WordPlacer();
 		//***THROWING ERROR HERE DOES NOT LIKE CASTING TO STRING[]
+
 		linkedWords = placer.placeInList(wordList.toArray(), diff + 1);
 		
 		//Fills the grid with * so that the words can be placed
@@ -267,12 +269,22 @@ public class Game extends Activity {
                       temp = linkedWords.allTheOtherKids(1);
                   }   
               }
-              //Removing words from list that could not be placed...
-		for(int i = 0; i < failedWords.length - 1; i++) {
+        
+        //Removing words from list that could not be placed...
+              /*
+		for(int i = 0; i < failedWords.length; i++) {
 			if(aWordList.contains(failedWords[i])) {
 				aWordList.remove(failedWords[i]);
 			}
 		}
+		*/
+		/*
+		int plus = 0;
+		while(failedWords[plus] != null){
+			aWordList.remove(failedWords[plus]);
+			plus++;
+		}
+		*/
 		
 		String rand = "";
 		String failed = "";
@@ -280,7 +292,7 @@ public class Game extends Activity {
 			rand += " " + aWordList.get(i);
 			failed += " " + failedWords[i];
 		}
-		Log.e(TAG, " WordListAFTER: " + rand + " FAILED WORDS " + failed);
+		Log.e(TAG, " WordListAFTER: " + rand + "\n FAILED WORDS " + failed);
 		
 		placer.addRandomChars(myGrid);
 		
