@@ -28,7 +28,7 @@ import android.widget.Toast;
 public class Game extends Activity {
 	private static final String TAG = "game";
 	public static final String KEY_DIFF = "pk.dl.jk.wordsearch.difficulty";
-	public static final String KEY_CAT = "pk.dl.jk.wordsearch.difficulty";
+	public static final String KEY_CAT = "pk.dl.jk.wordsearch.category";
 	//ACCESSED BY OTHER CLASSES DO NOT DELETE
 	public static final int ROWS = 10;
 	public static final int COLS = 10;
@@ -77,6 +77,9 @@ public class Game extends Activity {
 		//Get the extras put onto the intent
 		int diff = getIntent().getIntExtra(KEY_DIFF, DIFF_EASY);
 		int cat = getIntent().getIntExtra(KEY_CAT, CAT_RANDOM);
+		Log.e(TAG, " ***ORIG DIFF: " + diff);
+		Log.e(TAG, " **ORIG CAT: " + cat);
+
 		//if the diff is -1 (continue) need to get the stuff saved from onPause()
 		if(diff == CONTINUING_GAME){
 			board = fromPuzzleString(getPreferences(MODE_PRIVATE).getString(ORIG_PUZZLE, toPuzzleString(board)));
