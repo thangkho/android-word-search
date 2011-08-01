@@ -23,7 +23,7 @@ public class WordSearchActivity extends Activity implements OnClickListener {
     	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+        Log.e(TAG, "IN ON CREATE isContinuing: " + Boolean.toString(isContinuing));
         //Set up onClick Listeners for all of the btns
         continBtn = findViewById(R.id.btnContinue);
         continBtn.setOnClickListener(this);

@@ -64,7 +64,7 @@ public class PuzzleGridView extends LinearLayout{
 			@Override
 			public void onClick(View v) {
 				// move the txt to the prev word
-				if(wordListPosition == 0){
+				if(wordListPosition == 0) {
 					wordListPosition = Game.aWordList.size() - 1;
 				}
 				else {
@@ -106,8 +106,7 @@ public class PuzzleGridView extends LinearLayout{
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					
+					//finish the game					
 					((Activity) myContext).finish();									
 					
 				}
@@ -133,13 +132,12 @@ public class PuzzleGridView extends LinearLayout{
 		//height of the relative layout that holds the words and btns
 		int relLayHeight = v.getMeasuredHeight();
 		width = (getWidth()/Game.COLS);
-		height = (getHeight() - relLayHeight)/Game.ROWS;//(getHeight() - relLayHeight)/Game.ROWS;
+		height = (getHeight() - relLayHeight)/Game.ROWS;
 		
 	      
 //	    Log.d("***Puzz Grid View", "onSizeChanged: width " + width + ", height "
 //	            + height + "***");
 	    gv = (GridView)findViewById(R.id.boardGrid);
-	    //gv.setColumnWidth(Grid.width);
 	    gv.setNumColumns(Game.COLS);
 	    gv.setAdapter(new ImageAdapter(getContext()));
 	    gv.setOnTouchListener(new DragListener(gv));
