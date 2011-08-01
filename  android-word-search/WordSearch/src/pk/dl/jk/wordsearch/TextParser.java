@@ -29,7 +29,8 @@ public class TextParser extends Activity {
 	public ArrayList<String> getWords(int numWords, String wordListText) throws IOException
 	{
 		ArrayList<String> wordList = new ArrayList<String>();
-		
+		//change this variable to adjust the amount of words chosen.
+		int words = 14;
 		/*
 		 *  Scanner will parse full String of our text file into an ArrayList, by word.
 		 */
@@ -50,14 +51,14 @@ public class TextParser extends Activity {
 		
 		ArrayList<String> finalWordList = new ArrayList<String>();
 		Random rand = new Random();
-		int tenth = (wordList.size()/10);
-		int temp = rand.nextInt(wordList.size()/10);
+		int tenth = (wordList.size()/words);
+		int temp = rand.nextInt(wordList.size()/words);
 		
 		// Grabbing ten words, in order, pseudo-randomly.
 		for(int i = 0; i < numWords; i++)
 		{
 			finalWordList.add(wordList.get(temp));
-			temp = (tenth * i) + rand.nextInt(wordList.size()/10);
+			temp = (tenth * i) + rand.nextInt(wordList.size()/words);
 		}
 		
 		finalWordList.trimToSize();
