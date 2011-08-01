@@ -149,6 +149,11 @@ public class Game extends Activity {
 		wordList = t.getWords(10,wordListText);
 		aWordList = wordList;
 		failedWords = new String[wordList.toArray().length];
+		String rand2 = "";
+		for(int i = 0; i < aWordList.size(); i++){
+			rand2 += " " + aWordList.get(i);
+		}
+		Log.e(TAG, " WordListBEFORE: " + rand2);
 		
 		WordPlacer placer = new WordPlacer();
 		//***THROWING ERROR HERE DOES NOT LIKE CASTING TO STRING[]
@@ -265,9 +270,15 @@ public class Game extends Activity {
 				aWordList.remove(i);
 			}
 		}
+		String rand = "";
+		for(int i = 0; i < aWordList.size(); i++){
+			rand += " " + aWordList.get(i);
+		}
+		Log.e(TAG, " WordListAFTER: " + rand);
+		
 		placer.addRandomChars(myGrid);
 		
-		//TEST
+		//TEST Printing Grid String
 		String asd = "";
 		for(int i = 0; i < ROWS; i++){
 			for(int j = 0; j < COLS; j++){
