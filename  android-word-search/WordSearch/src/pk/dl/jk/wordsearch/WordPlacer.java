@@ -1542,7 +1542,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             int count = 0;
             
              //if the all locations are used then empty the String array, and stop the method
-            if(use >= 35){
+            if(use >= 34){
                 use = -1;
                 alreadyUsed = null;
                 alreadyUsed = new String[35];
