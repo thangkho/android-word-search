@@ -188,8 +188,10 @@ public class Game extends Activity {
                       if(placer.getNotIntheGrid() == true){
                           //places any words that didn't go in the faildWords String array
                     	  for(int i = 0; i < temp.word.length; i++){
-                              failedWords[count] = temp.word[i];
-                              count++;
+                    		  if(temp.word[i] != null){
+                    			  failedWords[count] = temp.word[i];
+                    			  count++;
+                    		  }
                           }
                           placer.setBackFalse();
                       }
@@ -214,8 +216,10 @@ public class Game extends Activity {
                       if(placer.getNotIntheGrid() == true){
                     	//places any words that didn't go in the faildWords String array
                     	  for(int i = 0; i < temp.word.length; i++){
-                              failedWords[count] = temp.word[i];
-                              count++;
+                    		  if(temp.word[i] != null){
+                    			  failedWords[count] = temp.word[i];
+                    			  count++;
+                    		  }
                           }
                           placer.setBackFalse();
                       }
@@ -239,8 +243,10 @@ public class Game extends Activity {
                       if(placer.getNotIntheGrid() == true){
                     	//places any words that didn't go in the faildWords String array
                     	  for(int i = 0; i < temp.word.length; i++){
-                              failedWords[count] = temp.word[i];
-                              count++;
+                    		  if(temp.word[i] != null){
+                    			  failedWords[count] = temp.word[i];
+                    			  count++;
+                    		  }
                           }
                           placer.setBackFalse();
                       }
@@ -249,7 +255,7 @@ public class Game extends Activity {
                   }   
               }
  
-              //One word
+              //One word from the list
               temp = linkedWords.allTheOtherKids(1);          
          
               if(temp != null){
@@ -263,8 +269,10 @@ public class Game extends Activity {
                       if(placer.getNotIntheGrid() == true){
                     	//places any words that didn't go in the faildWords String array
                     	  for(int i = 0; i < temp.word.length; i++){
-                              failedWords[count] = temp.word[i];
-                              count++;
+                    		  if(temp.word[i] != null){
+                    			  failedWords[count] = temp.word[i];
+                    			  count++;
+                    		  }
                           }
                           placer.setBackFalse();
                       }
@@ -272,14 +280,19 @@ public class Game extends Activity {
                       temp = linkedWords.allTheOtherKids(1);
                   }   
               }
-              Log.e(TAG, " BREAK ");
-        //Removing words from list that could not be placed...	
-        for(int i = 0; i < failedWords.length; i++){
-        	if(aWordList.contains(failedWords[i])) {
-				aWordList.remove(failedWords[i]);
-				//aWordList.trimToSize();
-			}	
-        }
+              
+              
+        //Removing words from list that could not be placed...		
+		int acount = 0;
+		while(failedWords[acount] != null){
+			if(aWordList.contains(failedWords[acount])) {
+				aWordList.remove(failedWords[acount]);
+			}		
+			acount++;
+		}
+		Log.e(TAG, " BREAK ");
+              
+
 		
 
 		String rand = "";
