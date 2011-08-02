@@ -1573,6 +1573,15 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                 	  count++;   
             }
             
+            if(alreadyUsed[alreadyUsed.length - 1] != null){
+            	use = -1;
+                alreadyUsed = null;
+                alreadyUsed = new String[35];
+                failed = true;
+                
+                return;
+            }
+            
             //trys to place words into the new location in the grid
             placeInGrid(words, let, grid, xPos, yPos, level, false); 
         }
