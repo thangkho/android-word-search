@@ -164,8 +164,7 @@ public class LinkedList {
        
        if(result != null){ 
            delete(result.word);
-       }
-       
+       }   
                             
        return result;
    }
