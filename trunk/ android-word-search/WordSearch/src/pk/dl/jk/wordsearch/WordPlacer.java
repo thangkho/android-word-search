@@ -1523,7 +1523,6 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             ////End of Level Switch statement////
         }catch(Exception exception){
             
-            System.out.println("Resulted in an Exception");
             use = -1;
             alreadyUsed = null;
             alreadyUsed = new String[35];
