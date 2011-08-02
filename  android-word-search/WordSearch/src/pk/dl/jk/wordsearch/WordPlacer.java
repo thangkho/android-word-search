@@ -1542,7 +1542,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             int count = 0;
             
              //if the all locations are used then empty the String array, and stop the method
-            if(use >= 34){
+            if(use >= 35){
                 use = -1;
                 alreadyUsed = null;
                 alreadyUsed = new String[35];
@@ -1559,17 +1559,18 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             xPos = rand.nextInt(10);
             yPos = rand.nextInt(10);
             String newXY = Integer.toString(xPos) + Integer.toString(yPos);
+            
              
             //Checks to see if the new location is in the array, if it is then it chooses a new random location that hasn't been choosen
-            while(alreadyUsed[count] != null){
+            while(alreadyUsed[count] != null && count < alreadyUsed.length){
                   if(newXY.equalsIgnoreCase(alreadyUsed[count])){
                       xPos = rand.nextInt(10);
                       yPos = rand.nextInt(10); 
                       newXY = Integer.toString(xPos) + Integer.toString(yPos);
                       count = -1;
                     }
-                    
-                  count++;    
+                  
+                	  count++;   
             }
             
             //trys to place words into the new location in the grid
