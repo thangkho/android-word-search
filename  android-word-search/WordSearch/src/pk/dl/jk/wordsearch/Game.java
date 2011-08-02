@@ -173,6 +173,7 @@ public class Game extends Activity {
 		
 		 WordNode temp;
          
+		 //Four words connected 
          if((diff + 1) == 1){
               temp = linkedWords.allTheOtherKids(4);          
          
@@ -198,6 +199,7 @@ public class Game extends Activity {
               }
           }
               
+         //Three words connected
           if((diff + 1) == 1 || (diff + 1) == 2){
               temp = linkedWords.allTheOtherKids(3);          
          
@@ -223,6 +225,7 @@ public class Game extends Activity {
               }
           }
               
+          	  //Two words connected
               temp = linkedWords.allTheOtherKids(2);          
          
               if(temp != null){
@@ -246,7 +249,7 @@ public class Game extends Activity {
                   }   
               }
  
-              
+              //One word
               temp = linkedWords.allTheOtherKids(1);          
          
               if(temp != null){
@@ -277,14 +280,6 @@ public class Game extends Activity {
 			}		
 			acount++;
 		}
-		
-		/*
-		int plus = 0;
-		while(failedWords[plus] != null){
-			aWordList.remove(failedWords[plus]);
-			plus++;
-		}
-		*/
 		
 		String rand = "";
 		String failed = "";
