@@ -16,7 +16,7 @@ import android.app.AlertDialog;
 public class WordSearchActivity extends Activity implements OnClickListener {
 	private static final String TAG = "WordSearch";
 	private static int difficulty;
-	private static View continBtn;
+	public static View continBtn;
 	public static boolean isContinuing = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {

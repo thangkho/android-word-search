@@ -95,6 +95,7 @@ public class PuzzleGridView extends LinearLayout{
 		//Check if the size is 0
 		if(Game.aWordList.size() == 0) {
 			WordSearchActivity.isContinuing = false;
+			WordSearchActivity.continBtn.setEnabled(false);
 			
 			//Create an alert dialog to say the player won and then exit the game activity
 			//which takes them to main screen where they can start another or press the exit btn to quit

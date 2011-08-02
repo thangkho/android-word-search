@@ -272,19 +272,21 @@ public class Game extends Activity {
                       temp = linkedWords.allTheOtherKids(1);
                   }   
               }
-        //Removing words from list that could not be placed...		
-		int acount = 0;
-		while(failedWords[acount] != null){
-			if(aWordList.contains(failedWords[acount])) {
-				aWordList.remove(failedWords[acount]);
-			}		
-			acount++;
-		}
+              Log.e(TAG, " BREAK ");
+        //Removing words from list that could not be placed...	
+        for(int i = 0; i < failedWords.length; i++){
+        	if(aWordList.contains(failedWords[i])) {
+				aWordList.remove(failedWords[i]);
+				//aWordList.trimToSize();
+			}	
+        }
 		
+
 		String rand = "";
 		String failed = "";
 		for(int i = 0; i < aWordList.size(); i++){
 			rand += " " + aWordList.get(i);
+			
 		}
 		for(int i = 0; i < failedWords.length; i++){
 			failed += " " + failedWords[i];
