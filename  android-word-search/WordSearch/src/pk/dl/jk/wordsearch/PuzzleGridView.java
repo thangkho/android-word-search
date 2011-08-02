@@ -101,7 +101,7 @@ public class PuzzleGridView extends LinearLayout{
 			//which takes them to main screen where they can start another or press the exit btn to quit
 			AlertDialog alert = new AlertDialog.Builder(myContext).create();
 			alert.setTitle("You Won!!");
-			alert.setMessage("Congratulations, You Found All of The Words And Won!");
+			alert.setMessage("¡¡¡¡Congratulations, You Found All of The Words!!!!");
 			
 			alert.setButton("OK", new DialogInterface.OnClickListener() {
 				
