@@ -153,7 +153,7 @@ public class WordPlacer {
                                  
               
                              //if there are less than four words in the list that contain the same letter it ends the while loop
-                             int checker = 1;
+                             int checker = 0;
                              while(checker < pairs.length){
                                 if(pairs[checker] == null ){
                                     finished = true;
@@ -257,7 +257,7 @@ public class WordPlacer {
                                  
               
                              //if there are less than four words in the list that contain the same letter it ends the while loop
-                             int checker = 1;
+                             int checker = 0;
                              while(checker < pairs.length){
                                 if(pairs[checker] == null ){
                                     finished = true;
@@ -337,7 +337,7 @@ public class WordPlacer {
                                  
               
                              //if there are less than four words in the list that contain the same letter it ends the while loop
-                             int checker = 1;
+                             int checker = 0;
                              while(checker < pairs.length){
                                 if(pairs[checker] == null ){
                                     finished = true;

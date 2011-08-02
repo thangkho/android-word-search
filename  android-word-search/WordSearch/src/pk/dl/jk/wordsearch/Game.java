@@ -290,6 +290,7 @@ public class Game extends Activity {
 			}		
 			acount++;
 		}
+		
 		Log.e(TAG, " BREAK ");
               
 
