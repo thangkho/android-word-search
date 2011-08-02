@@ -1527,7 +1527,8 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
             alreadyUsed = null;
             alreadyUsed = new String[35];
             failed = true;
-                
+            Log.e("ERROR", "ERROR IN CODE WORD PLACER: " + exception.toString());
+			exception.printStackTrace();
             return;
         }
         //End of Try-Catch, incase the placeInGrid() method doesn't work
