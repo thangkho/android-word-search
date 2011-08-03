@@ -453,13 +453,13 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                         int location2 = words[2].indexOf(temp2);
                                         
                                         //checks to see if the third word fits in the grid
-                                        if((xPos  - location - location2) >= 0 && (xPos  - location + ((words[2].length()-1) - location2)) <= 9
+                                        if((xPos  + location - location2) >= 0 && (xPos  + location + ((words[2].length()-1) - location2)) <= 9
                                                 && (yPos + location - location2) >= 0 && (yPos + location + ((words[2].length()-1) - location2)) <= 9){
                                                 while(count3 < words[2].length() && fits == true){
                                                     location2 = words[2].indexOf(temp2) - count3;
 
-                                                    if(!(grid[xPos - location - location2][yPos + location - location2].equalsIgnoreCase("*")) &&
-                                                            !(grid[xPos - location - location2][yPos + location - location2].equalsIgnoreCase(Character.toString(words[2].charAt(count3))))){
+                                                    if(!(grid[xPos + location - location2][yPos + location - location2].equalsIgnoreCase("*")) &&
+                                                            !(grid[xPos + location - location2][yPos + location - location2].equalsIgnoreCase(Character.toString(words[2].charAt(count3))))){
                                                             
                                                                 fits = false;
                                                     }   
@@ -539,7 +539,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                                 while(count3 < words[2].length()){
                                                     location2 = words[2].indexOf(temp2) - count3;
                                                     
-                                                    grid[xPos - location - location2][yPos + location - location2] = Character.toString(words[2].charAt(count3));
+                                                    grid[xPos + location - location2][yPos + location - location2] = Character.toString(words[2].charAt(count3));
                                                 
                                                     count3++;
                                                 }
@@ -647,13 +647,13 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                         int location2 = words[2].indexOf(temp2);
                                         
                                         //checks to see if the third word fits in the grid
-                                        if((xPos  - location - location2) >= 0 && (xPos  - location + ((words[2].length()-1) - location2)) <= 9
+                                        if((xPos  + location - location2) >= 0 && (xPos  + location + ((words[2].length()-1) - location2)) <= 9
                                                 && (yPos + location - location2) >= 0 && (yPos + location + ((words[2].length()-1) - location2)) <= 9){
                                                 while(count3 < words[2].length() && fits == true){
                                                     location2 = words[2].indexOf(temp2) - count3;
                                                      
-                                                    if(!(grid[xPos - location - location2][yPos + location - location2].equalsIgnoreCase("*")) &&
-                                                            !(grid[xPos - location - location2][yPos + location - location2].equalsIgnoreCase(Character.toString(words[2].charAt(count3))))){
+                                                    if(!(grid[xPos + location - location2][yPos + location - location2].equalsIgnoreCase("*")) &&
+                                                            !(grid[xPos + location - location2][yPos + location - location2].equalsIgnoreCase(Character.toString(words[2].charAt(count3))))){
                                                             
                                                                     fits = false;
                                                     }
@@ -731,7 +731,7 @@ public void placeInGrid(String[] words, String let, String[][] grid, int newX, i
                                                 while(count3 < words[2].length()){
                                                     location2 = words[2].indexOf(temp2) - count3;
                                                     
-                                                    grid[xPos - location - location2][yPos + location - location2] = Character.toString(words[2].charAt(count3));
+                                                    grid[xPos + location - location2][yPos + location - location2] = Character.toString(words[2].charAt(count3));
                                                 
                                                     count3++;
                                                 }
