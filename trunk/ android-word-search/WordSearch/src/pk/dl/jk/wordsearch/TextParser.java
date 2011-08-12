@@ -30,7 +30,7 @@ public class TextParser extends Activity {
 	{
 		ArrayList<String> wordList = new ArrayList<String>();
 		//change this variable to adjust the amount of words chosen.
-		int words = 14;
+		int words = numWords;
 		/*
 		 *  Scanner will parse full String of our text file into an ArrayList, by word.
 		 */
@@ -51,6 +51,41 @@ public class TextParser extends Activity {
 		
 		ArrayList<String> finalWordList = new ArrayList<String>();
 		Random rand = new Random();
+		
+		//Start of the new Code I added
+		int temp = rand.nextInt(wordList.size());
+		
+		for(int i = 0; i < numWords; i++)
+		{
+			//For the first word, just add it the word to the list
+			if(finalWordList == null){
+				finalWordList.add(wordList.get(temp));
+			
+			//For the rest of the words, choose a random number, if the word at that index equals 
+			//a word that has already been chosen then choose a new word
+			}else{
+				
+				temp = rand.nextInt(wordList.size());
+				int count = 0;
+				
+				while(count < finalWordList.size()){
+					//if the words match then it goes back to the beginning of the loop and sees if the new word also matches
+					if(wordList.get(temp).equalsIgnoreCase(finalWordList.get(count))){
+						temp = rand.nextInt(wordList.size());
+						count = -1;
+					}
+					
+					count++;
+				}
+				finalWordList.add(wordList.get(temp));
+			}//End of Nested if statement
+			
+		}//End of for loop
+		///End of the Code that I added///
+		
+		
+		//Previous code Patrick had in place to select words randomly
+		/*
 		int tenth = (wordList.size()/words);
 		int temp = rand.nextInt(wordList.size()/words);
 		
@@ -60,6 +95,9 @@ public class TextParser extends Activity {
 			finalWordList.add(wordList.get(temp));
 			temp = (tenth * i) + rand.nextInt(wordList.size()/words);
 		}
+		*/
+		///End of Previous code///
+		
 		
 		finalWordList.trimToSize();
 		
