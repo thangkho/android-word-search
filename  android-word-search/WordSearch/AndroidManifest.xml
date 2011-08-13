@@ -6,7 +6,7 @@
       <uses-sdk android:targetSdkVersion="8" />
 
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
+    <application android:label="@string/app_name" android:debuggable="true" android:icon="@drawable/wordicon">
         <activity android:name=".WordSearchActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="portrait">

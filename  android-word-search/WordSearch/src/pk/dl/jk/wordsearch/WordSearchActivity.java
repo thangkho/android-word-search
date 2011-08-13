@@ -62,7 +62,7 @@ public class WordSearchActivity extends Activity implements OnClickListener {
     	else{
     		continBtn.setEnabled(false);
     	}
-    	Music.playMusic(this, R.raw.main);
+    	Music.playMusic(this, R.raw.opening);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
