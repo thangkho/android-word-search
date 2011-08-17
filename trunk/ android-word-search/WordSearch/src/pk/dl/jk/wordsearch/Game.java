@@ -399,7 +399,7 @@ public class Game extends Activity {
 	protected void onResume(){
 		
 		super.onResume();
-		Music.playMusic(this, R.raw.game);
+		Music.playMusic(this, R.raw.different);
 	}
 	
 	/** Convert an array into a puzzle string */
