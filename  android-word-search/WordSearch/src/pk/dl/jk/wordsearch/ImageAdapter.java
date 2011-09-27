@@ -58,7 +58,7 @@ public class ImageAdapter extends BaseAdapter {
 	private int valueOf(char character)
 	{
 		int value = 0;
-		for(int i = 0; i < alphabet.length() - 1; i++)
+		for(int i = 0; i < alphabet.length(); i++)
 		{
 			if(Character.toString(character).equalsIgnoreCase(Character.toString(alphabet.charAt(i))))
 			{
