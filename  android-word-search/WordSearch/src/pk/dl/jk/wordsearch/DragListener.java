@@ -21,6 +21,8 @@ public class DragListener implements OnTouchListener {
 	private float myLastTouchX;
 	private float myLastTouchY;
 	private String word = "";
+	private String reversed = "";
+	private String temp = "";
 	private int index = 0;
 	private int lastPosition = -1;
 	private GridView myCallingGrid;
@@ -114,7 +116,30 @@ public class DragListener implements OnTouchListener {
 						
 						
 						
+					}  
+					
+					reversed = Game.aWordList.get(i);
+				    for(int k = 0; k < reversed.length() ; k++){
+				    	temp += reversed.charAt(reversed.length() - 1 - k);
+				    }
+				    reversed = temp;
+				    temp = "";
+				    if(word.equalsIgnoreCase(reversed)){
+						//If it equals one, change the positions crossed
+						for(int j = 0; j < positionsCrossed.length; j++){
+							//set them all to found
+							a.swapToFound(positionsCrossed[j]);
+							//set to -1 to flag as unused
+							positionsCrossed[j] = -1;						
+							
+						}
+						//CHANGED WANTED TO DRAW A LINE SO IT'S EASIER, CAN'T FIGURE OUT HOW						
+						//startPoint.set((int)myFirstTouchX, (int)myFirstTouchY);
+						//Update handles setting the txt label and removing word
+						PuzzleGridView.update(i);
+						
 					}
+				    
 				}
 				//swap them back to not highlighted
 				a.swapBack(positionsCrossed);
