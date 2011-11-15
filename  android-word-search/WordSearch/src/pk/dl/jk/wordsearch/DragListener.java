@@ -100,6 +100,7 @@ public class DragListener implements OnTouchListener {
 				//Iterate through the list to see if the word matches 
 				//any of the list words.
 				for(int i = 0; i < Game.aWordList.size(); i++){
+					
 					if(word.equalsIgnoreCase(Game.aWordList.get(i)))
 					{//If it equals one, change the positions crossed
 						for(int j = 0; j < positionsCrossed.length; j++){
@@ -118,7 +119,8 @@ public class DragListener implements OnTouchListener {
 						
 					}  
 					
-					reversed = Game.aWordList.get(i);
+					if(Game.aWordList.isEmpty() == false){
+					reversed = Game.aWordList.get(i);					
 				    for(int k = 0; k < reversed.length() ; k++){
 				    	temp += reversed.charAt(reversed.length() - 1 - k);
 				    }
@@ -138,6 +140,7 @@ public class DragListener implements OnTouchListener {
 						//Update handles setting the txt label and removing word
 						PuzzleGridView.update(i);
 						
+					}
 					}
 				    
 				}
